@@ -768,6 +768,9 @@ spec:
                                 - RANDOM
                                 - PASSTHROUGH
                               type: string
+                            warmupDurationSecs:
+                              description: Grace time to receive complete request
+                              type: string
                         outlierDetection:
                           description: Settings controlling eviction of unhealthy hosts from the load balancing pool.
                           type: object
