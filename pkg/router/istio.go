@@ -212,6 +212,7 @@ func (ir *IstioRouter) reconcileVirtualService(canary *flaggerv1.Canary) error {
 			Http: []istiov1alpha3.HTTPRoute{
 				{
 					Match:      canary.Spec.Service.Match,
+					Fault:      canary.Spec.Service.Fault,
 					Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 					Timeout:    canary.Spec.Service.Timeout,
 					Retries:    canary.Spec.Service.Retries,
@@ -240,6 +241,7 @@ func (ir *IstioRouter) reconcileVirtualService(canary *flaggerv1.Canary) error {
 		newSpec.Http = []istiov1alpha3.HTTPRoute{
 			{
 				Match:      canaryMatch,
+				Fault:      canary.Spec.Service.Fault,
 				Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 				Timeout:    canary.Spec.Service.Timeout,
 				Retries:    canary.Spec.Service.Retries,
@@ -249,6 +251,7 @@ func (ir *IstioRouter) reconcileVirtualService(canary *flaggerv1.Canary) error {
 			},
 			{
 				Match:      canary.Spec.Service.Match,
+				Fault:      canary.Spec.Service.Fault,
 				Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 				Timeout:    canary.Spec.Service.Timeout,
 				Retries:    canary.Spec.Service.Retries,
@@ -499,6 +502,7 @@ func (ir *IstioRouter) SetRoutes(
 	// weighted routing (progressive canary)
 	weightedRoute := istiov1alpha3.HTTPRoute{
 		Match:      canary.Spec.Service.Match,
+		Fault:      canary.Spec.Service.Fault,
 		Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 		Timeout:    canary.Spec.Service.Timeout,
 		Retries:    canary.Spec.Service.Retries,
@@ -614,6 +618,7 @@ func (ir *IstioRouter) SetRoutes(
 		vsCopy.Spec.Http = []istiov1alpha3.HTTPRoute{
 			{
 				Match:      canaryMatch,
+				Fault:      canary.Spec.Service.Fault,
 				Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 				Timeout:    canary.Spec.Service.Timeout,
 				Retries:    canary.Spec.Service.Retries,
@@ -626,6 +631,7 @@ func (ir *IstioRouter) SetRoutes(
 			},
 			{
 				Match:      canary.Spec.Service.Match,
+				Fault:      canary.Spec.Service.Fault,
 				Rewrite:    canary.Spec.Service.GetIstioRewrite(),
 				Timeout:    canary.Spec.Service.Timeout,
 				Retries:    canary.Spec.Service.Retries,

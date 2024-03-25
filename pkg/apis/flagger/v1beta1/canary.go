@@ -146,6 +146,10 @@ type CanaryService struct {
 	// PortDiscovery adds all container ports to the generated Kubernetes service
 	PortDiscovery bool `json:"portDiscovery"`
 
+	// Fault defines the HTTP fault injection configuration
+	// +optional
+	Fault *istiov1alpha3.HTTPFaultInjection `json:"fault,omitempty"`
+
 	// Timeout of the HTTP or gRPC request
 	// +optional
 	Timeout string `json:"timeout,omitempty"`
