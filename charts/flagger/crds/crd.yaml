@@ -460,6 +460,40 @@ spec:
                               header, but has opposite meaning.
                             type: object
                         type: object
+                  fault:
+                    description: Fault injection policy to apply on HTTP traffic at the client side. Note that timeouts or retries will not be enabled when faults are enabled on the client side.
+                    type: object
+                    properties:
+                      delay:
+                        description: Delay requests before forwarding
+                        type: object
+                        properties:
+                          fixedDelay:
+                            description: The amount of time to delay requests
+                            type: string
+                          percentage:
+                            description: Percentage of requests to delay
+                            type: number
+                          percent:
+                            description: Percentage of requests to delay
+                            type: number
+                            minimum: 0.0
+                            maximum: 100.0
+                      abort:
+                        description: Abort requests before forwarding
+                        type: object
+                        properties:
+                          httpStatus:
+                            description: HTTP status code to return
+                            type: integer
+                          grpcStatus:
+                            description: gRPC status code to return
+                            type: string
+                          percentage:
+                            description: Percentage of requests to abort
+                            type: number
+                            minimum: 0.0
+                            maximum: 100.0
                     retries:
                       description: Retry policy for HTTP requests
                       type: object
